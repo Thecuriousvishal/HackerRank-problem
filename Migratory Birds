@@ -1,0 +1,20 @@
+int migratoryBirds(vector<int> arr) {
+    vector<int> frequency(6,0);
+    //Count the occurance nof each bird
+    for(auto bird:arr){
+        frequency[bird]++;
+    }
+    //Find the max frequency and the smaller bird type i'd with that frequency
+    int maxFreq=0;
+    int birdTypeWithMaxFreq=0;
+    for(int i=0;i<=5;i++){
+        if(frequency[i]>maxFreq){
+            maxFreq=frequency[i];
+            birdTypeWithMaxFreq=i;
+        }
+        else if(frequency[i]==maxFreq && i<birdTypeWithMaxFreq){
+            birdTypeWithMaxFreq=i;
+        }
+    }
+    return birdTypeWithMaxFreq;
+}
