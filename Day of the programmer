@@ -1,0 +1,37 @@
+// Function to determine if a year is a leap year in the Julian calendar
+bool isJulianLeapYear(int year) {
+    return year % 4 == 0;
+}
+
+// Function to determine if a year is a leap year in the Gregorian calendar
+bool isGregorianLeapYear(int year) {
+    return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+}
+
+// Function to return the date of the 256th day of the given year
+std::string dayOfProgrammer(int year) {
+    if (year == 1918) {
+        // Special case for the transition year 1918
+        return "26.09.1918";
+    }
+
+    bool isLeapYear = false;
+
+    if (year < 1918) {
+        // Julian calendar leap year rule
+        if (isJulianLeapYear(year)) {
+            isLeapYear = true;
+        }
+    } else {
+        // Gregorian calendar leap year rule
+        if (isGregorianLeapYear(year)) {
+            isLeapYear = true;
+        }
+    }
+
+    if (isLeapYear) {
+        return "12.09." + std::to_string(year);
+    } else {
+        return "13.09." + std::to_string(year);
+    }
+}
